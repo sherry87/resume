@@ -1,19 +1,56 @@
-
-
-
-
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<meta name="format-detection" content="telephone=no" />
-<title></title>
-<link rel="stylesheet" type="text/css" href="css/materialize.min.css"/>
-<link rel="stylesheet" href="css/wap_md.min.css"/>
-</head>
-
-<body>
-
-</body>
+	<head>
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel='stylesheet' href='css/style.css'/>
+	</head>
+	<body>
+		<script type="text/javascript" src="js/jquery-1.11.1.js" ></script>
+		<script type="text/javascript" src="js/jquery.qrcode.js" ></script>
+        <script type="text/javascript" src="js/qrcode.js" ></script> 
+        <script type="text/javascript" src="js/utf.js" ></script>
+		 <div class="main">
+		 	<table id="tb">
+		 		<tr>
+		 			<th>编号</th>
+		 			<th>姓名</th>
+		 			<th>性别</th>
+		 			<th>二维码</th>
+		 		</tr>
+		 		
+		 	</table>
+		 </div>
+	</body>
 </html>
+<script>
+		 $(function(){
+		 	$.getJSON("js/resume.json",function(data){
+		 		var strHtml = ""
+		 		$.each(data,function(infoIndex,info){
+		 			var index = infoIndex+1;
+		 			strHtml +="<tr>";
+		 			strHtml += "<td>"+index+"</td>"; 
+					strHtml += "<td>"+info["name"]+"</td>"; 
+					strHtml += "<td>"+info["sex"]+"</td>"; 
+					strHtml += "<td data-url='"+info["url"]+"' class='js-ewm'></td>"; 
+					strHtml +="</tr>";
+				}); 
+				$("#tb tr:last").after(strHtml);
+				
+				$(".js-ewm").each(function(){
+					var obj = $(this);
+					var url = obj.data("url");
+					obj.qrcode({
+				         text    : url , <!-- 二维码内容  -->
+				         width : "200",               //二维码的宽度
+		                 height : "200",
+				     });
+				});
+		 	});
+		 	
+		 	
+		 });
+		    
+		 </script>
