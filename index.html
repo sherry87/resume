@@ -50,14 +50,14 @@
 					var url = obj.data("url");
 					obj.qrcode({
 				         text    : url , <!-- 二维码内容  -->
-				         width : "200",               //二维码的宽度
-		                 height : "200",
+				         width : "100",               //二维码的宽度
+		                 height : "100",
 				     });
 				});
 		 	});
 		 	
 		 	$("#tb tbody").delegate("tr","click",function(){
-		 		location.href="/info/view-"+$(this).data("code")+".html";
+		 		location.href="info/view-"+$(this).data("code")+".html";
 		 	});
 		 	
 		 });
