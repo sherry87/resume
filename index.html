@@ -4,7 +4,7 @@
 		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
 		<meta charset="utf-8" />
 		<title></title>
-		<link rel='stylesheet' href='css/style.css'/>
+		<link rel='stylesheet' href='css/style.css?version=20170721001'/>
 	</head>
 	<body>
 		<script type="text/javascript" src="js/jquery-1.11.1.js" ></script>
@@ -32,7 +32,7 @@
 </html>
 <script>
 		 $(function(){
-		 	$.getJSON("js/resume.json",function(data){
+		 	$.getJSON("js/resume.json?version=20170721001",function(data){
 		 		var strHtml = ""
 		 		$.each(data,function(infoIndex,info){
 		 			var index = infoIndex+1;
