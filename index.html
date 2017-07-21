@@ -12,14 +12,19 @@
         <script type="text/javascript" src="js/qrcode.js" ></script> 
         <script type="text/javascript" src="js/utf.js" ></script>
 		 <div class="main">
-		 	<h1>人员二维码清单</h1>
+		 	<h1>人员清单</h1>
 		 	<table id="tb">
-		 		<tr>
-		 			<th>编号</th>
-		 			<th>姓名</th>
-		 			<th>性别</th>
-		 			<th>二维码</th>
-		 		</tr>
+		 		<thead>
+		 			<tr>
+			 			<th>编号</th>
+			 			<th>姓名</th>
+			 			<th>性别</th>
+			 			<th>备案表</th>
+		 			</tr>
+		 		</thead>
+		 		<tbody>
+		 			
+		 		</tbody>
 		 		
 		 	</table>
 		 </div>
@@ -31,14 +36,14 @@
 		 		var strHtml = ""
 		 		$.each(data,function(infoIndex,info){
 		 			var index = infoIndex+1;
-		 			strHtml +="<tr>";
+		 			strHtml +="<tr data-code='"+info["code"]+"'>";
 		 			strHtml += "<td>"+index+"</td>"; 
 					strHtml += "<td>"+info["name"]+"</td>"; 
 					strHtml += "<td>"+info["sex"]+"</td>"; 
 					strHtml += "<td data-url='"+info["url"]+"' class='js-ewm'></td>"; 
 					strHtml +="</tr>";
 				}); 
-				$("#tb tr:last").after(strHtml);
+				$("#tb tbody").append(strHtml);
 				
 				$(".js-ewm").each(function(){
 					var obj = $(this);
@@ -51,6 +56,9 @@
 				});
 		 	});
 		 	
+		 	$("#tb tbody").delegate("tr","click",function(){
+		 		location.href="/info/view-"+$(this).data("code")+".html";
+		 	});
 		 	
 		 });
 		    
